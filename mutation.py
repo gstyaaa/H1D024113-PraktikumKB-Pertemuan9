@@ -1,49 +1,34 @@
 import random
 
-
+# Swap Mutation
 def swap_mutation(kromosom):
 
+    # Pastikan kromosom adalah list
     kromosom = list(kromosom)
 
-    posisi1, posisi2 = random.sample(
-        range(len(kromosom)),
-        2
-    )
+    # Pilih dua posisi untuk swap
+    posisi1, posisi2 = random.sample(range(len(kromosom)), 2)
 
-    kromosom[posisi1], kromosom[posisi2] = (
-        kromosom[posisi2],
-        kromosom[posisi1]
-    )
+    # Melakukan swap
+    kromosom[posisi1], kromosom[posisi2] = kromosom[posisi2], kromosom[posisi1]
 
     return kromosom
 
-
+# Inversion Mutation
 def inversion_mutation(kromosom):
 
-    posisi1 = random.randint(
-        0,
-        len(kromosom)-2
-    )
+    posisi1 = random.randint(0, len(kromosom) - 2)
+    posisi2 = random.randint(posisi1 + 1, len(kromosom) - 1)
 
-    posisi2 = random.randint(
-        posisi1+1,
-        len(kromosom)-1
-    )
-
-    kromosom[posisi1:posisi2] = list(
-        reversed(
-            kromosom[posisi1:posisi2]
-        )
-    )
+    # Perbaikan di sini: konversi hasil reversed ke list
+    kromosom[posisi1:posisi2] = list(reversed(kromosom[posisi1:posisi2]))
 
     return kromosom
 
+# Uniform Mutation
+def uniform_mutation(kromosom, mutation_rate=0.1):
 
-def uniform_mutation(
-    kromosom,
-    mutation_rate=0.1
-):
-
+    # Pastikan kromosom adalah list
     kromosom = list(kromosom)
 
     for i in range(len(kromosom)):
@@ -53,14 +38,16 @@ def uniform_mutation(
 
     return kromosom
 
-
+# Definisikan anak1 sebelum digunakan
 anak1 = [0, 1, 1, 0, 1]
 
-mutasi1 = swap_mutation(anak1.copy())
-mutasi2 = inversion_mutation(anak1.copy())
-mutasi3 = uniform_mutation(anak1.copy())
+# Contoh penggunaan
+mutasi_anak1 = swap_mutation(anak1.copy())
+mutasi_anak2 = inversion_mutation(anak1.copy())
+mutasi_anak3 = uniform_mutation(anak1.copy())
 
-print("\n=== Anak Setelah Mutasi ===")
-print("Swap Mutation:", mutasi1)
-print("Inversion Mutation:", mutasi2)
-print("Uniform Mutation:", mutasi3)
+# Menampilkan hasil setelah mutasi
+print("\nAnak Setelah Mutasi:")
+print(f"Anak 1 (Swap Mutation): {mutasi_anak1}")
+print(f"Anak 2 (Inversion Mutation): {mutasi_anak2}")
+print(f"Anak 3 (Uniform Mutation): {mutasi_anak3}")
