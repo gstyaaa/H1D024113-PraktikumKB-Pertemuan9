@@ -1,50 +1,55 @@
-# Implementasi Algoritma Genetika - Knapsack Problem
+# Optimasi Knapsack Problem menggunakan Algoritma Genetika
 
-Proyek ini mengimplementasikan **Algoritma Genetika (GA)** untuk menyelesaikan permasalahan klasik **Knapsack Problem**. Tujuannya adalah memilih kombinasi barang yang memiliki total nilai (fitness) tertinggi tanpa melebihi kapasitas beban maksimal tas.
+Proyek ini bertujuan untuk menyelesaikan permasalahan **0/1 Knapsack Problem** dengan menggunakan **Algoritma Genetika (Genetic Algorithm)**. Knapsack Problem adalah masalah optimasi kombinatorial di mana kita harus memilih barang dengan nilai total maksimal tanpa melebihi kapasitas berat tertentu.
 
-## 📋 Struktur Proyek
+## 🚀 Fitur Utama
+- **Modul Terpisah**: Logika inisialisasi, evaluasi, seleksi, crossover, dan mutasi dipisah untuk kemudahan pemeliharaan.
+- **Berbagai Metode Seleksi & Operator**: Mendukung berbagai teknik seleksi (Roulette Wheel, Tournament) dan variasi crossover/mutasi.
+- **Visualisasi Real-time**: Menampilkan grafik perkembangan fitness (terbaik, terburuk, rata-rata) di setiap generasi.
+- **Auto-Save Plot**: Grafik hasil otomatis disimpan sebagai `fitness_plot.png`.
 
-Proyek ini terdiri dari beberapa modul Python yang masing-masing menangani tahapan spesifik dalam algoritma genetika:
+## 📂 Struktur Repositori
+| File | Deskripsi |
+|------|-----------|
+| `main.py` | Skrip utama untuk menjalankan alur algoritma genetika. |
+| `inisiasipopulasi.py` | Fungsi untuk membuat populasi awal kromosom biner. |
+| `evaluasifitness.py` | Menghitung nilai fitness berdasarkan total harga dan penalti berat. |
+| `selection.py` | Implementasi metode seleksi individu (Orang Tua). |
+| `crossover.py` | Mekanisme persilangan genetik untuk menghasilkan keturunan. |
+| `mutation.py` | Mekanisme mutasi untuk menjaga keragaman genetik. |
 
-1.  **`main.py`**: File utama yang mengatur alur eksekusi algoritma, mulai dari inisialisasi hingga visualisasi hasil.
-2.  **`inisiasipopulasi.py`**: Bertanggung jawab untuk membangkitkan populasi awal secara acak.
-3.  **`evaluasifitness.py`**: Berisi logika untuk menghitung nilai fitness (total harga) dan menangani batasan kapasitas (penalty jika melebihi kapasitas).
-4.  **`selection.py`**: Mengimplementasikan metode seleksi orang tua, seperti *Roulette Wheel Selection* dan *Tournament Selection*.
-5.  **`crossover.py`**: Menangani proses persilangan gen (*One-point*, *Two-point*, dan *Uniform crossover*) untuk menghasilkan keturunan baru.
-6.  **`mutation.py`**: Melakukan mutasi pada genetik anak untuk menjaga variasi populasi (*Swap*, *Inversion*, dan *Uniform mutation*).
+## 🛠️ Cara Penggunaan
 
-## ⚙️ Parameter Algoritma
+1. **Persiapan Lingkungan**
+   Pastikan Anda telah menginstal `numpy` dan `matplotlib`:
+   ```bash
+   pip install numpy matplotlib
+   ```
 
-Dalam implementasi ini, parameter yang digunakan adalah:
-- **Jumlah Generasi**: 50
-- **Jumlah Populasi**: 20
-- **Probabilitas Crossover**: 0.5
-- **Probabilitas Mutasi**: 0.1
-- **Kapasitas Tas**: 50 unit bobot
+2. **Menjalankan Program**
+   Eksekusi file `main.py`:
+   ```bash
+   python main.py
+   ```
 
-## 🚀 Cara Menjalankan
-
-Pastikan Anda telah menginstal pustaka `matplotlib` untuk visualisasi:
-```bash
-pip install matplotlib
-```
-
-Jalankan skrip utama:
-```bash
-python main.py
-```
+3. **Melihat Hasil**
+   - Output konsol akan menampilkan nilai fitness terbaik dan barang yang terpilih.
+   - Grafik perkembangan fitness akan muncul di jendela baru dan tersimpan sebagai `fitness_plot.png`.
 
 ## 📊 Hasil Visualisasi
-
-Setelah program selesai dijalankan, grafik perkembangan fitness terbaik di setiap generasi akan ditampilkan dan disimpan secara otomatis sebagai `fitness_plot.png`.
+Berikut adalah contoh grafik perkembangan fitness yang dihasilkan oleh program:
 
 ![Perkembangan Fitness](fitness_plot.png)
 
-## 💡 Penjelasan Alur Algoritma
+*Grafik menunjukkan nilai fitness tertinggi (biru), terendah (kuning), dan rata-rata (merah) di setiap generasi.*
 
-1.  **Inisialisasi**: Membuat sekumpulan individu (kromosom) acak yang merepresentasikan barang yang diambil (1) atau tidak (0).
-2.  **Evaluasi**: Menghitung total nilai barang untuk setiap individu. Jika total bobot melebihi kapasitas, fitness diberikan nilai 0.
-3.  **Seleksi**: Memilih individu terbaik untuk menjadi orang tua menggunakan metode *Roulette Wheel*.
-4.  **Crossover**: Menggabungkan gen dari dua orang tua untuk menciptakan individu baru (anak).
-5.  **Mutasi**: Mengubah sedikit bagian dari kromosom anak secara acak untuk menghindari optimasi lokal (stuck pada hasil yang kurang maksimal).
-6.  **Iterasi**: Proses ini diulang sebanyak jumlah generasi yang ditentukan hingga ditemukan solusi optimal.
+## ⚙️ Parameter Default
+Program ini menggunakan parameter berikut pada `main.py`:
+- **Generasi**: 50
+- **Populasi**: 20
+- **Probabilitas Crossover**: 0.5
+- **Probabilitas Mutasi**: 0.1
+- **Kapasitas Knapsack**: 50 unit
+
+---
+*Dibuat untuk tugas Praktikum Kecerdasan Buatan (Pertemuan 9).*
